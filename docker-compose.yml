@@ -7,12 +7,10 @@ services:
   kafka:
     build: .
     ports:
-      - "19092:9092"
+      - "19092:9092"  #외부에서 19092로 zookeeper 와는 9092로
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: 49.247.7.101
-      KAFKA_CREATE_TOPICS: "dbr-basic" 
-
+      KAFKA_ADVERTISED_HOST_NAME: 49.247.7.101 # local의 경우: 127.0.0.1 로 바꿀것
+      KAFKA_CREATE_TOPICS: "dbr-basic" # 초기에는 반드시 필요, 초기부팅시 반드시 1개는 필요.
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
